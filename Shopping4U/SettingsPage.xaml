@@ -1,0 +1,100 @@
+﻿<phone:PhoneApplicationPage xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"  Style="{StaticResource TransitionPageStyle}"
+    x:Class="Pritam.W7MobileApp.Shopping4U.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="/background.png" Stretch="None" />
+        </Grid.Background>
+        
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="0" Margin="12,6,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <my:AdControl Grid.Row="0" Name="adControl" AdUnitId="67755" ApplicationId="87c736aa-5c08-4078-8e17-b6a74788ed88" AdModel="Contextual" Height="80" RotationEnabled="True"/>
+            <TextBlock Grid.Row="1" x:Name="PageTitle" Text="settings" FontSize="48" Margin="10,13,0,10" FontFamily="Comic Sans MS" Foreground="White" />
+            <toolkit:ToggleSwitch Foreground="White" x:Name="ApplicationIdleDetection" Grid.Row="2" Unchecked="ApplicationIdleDetection_Unchecked" Checked="ApplicationIdleDetection_Checked" Content="No">
+                <toolkit:ToggleSwitch.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Run under screen locked " FontSize="{StaticResource PhoneFontSizeMedium}" Margin="0,-15,0,0" Foreground="White" />                                
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </toolkit:ToggleSwitch.HeaderTemplate>
+            </toolkit:ToggleSwitch>
+            <TextBlock Grid.Row="3" TextWrapping="Wrap" Margin="10" Foreground="White">If you turn-on this feature then application will consume battery when your scrren is locked, which will drain out your battery quickly</TextBlock>
+            <toolkit:ToggleSwitch Foreground="White" x:Name="LocalAdToggleSwitch" Grid.Row="4" Unchecked="LocalAdToggleSwitch_Unchecked" Checked="LocalAdToggleSwitch_Checked" Content="No" Margin="0,10">
+                <toolkit:ToggleSwitch.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Allow local ads" FontSize="{StaticResource PhoneFontSizeMedium}" Margin="0,-15,0,0" Foreground="White" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </toolkit:ToggleSwitch.HeaderTemplate>
+            </toolkit:ToggleSwitch>
+            <TextBlock Grid.Row="5" TextWrapping="Wrap" Margin="10,20" Foreground="White">Shopping4U uses your location to get you contextual ads specific to your location. Use above toggle switch to turn this setting on/off. Please read below terms and conditions for more information.</TextBlock>
+            <HyperlinkButton Grid.Row="6" Content="Terms and conditions" TargetName="_blank" Foreground="White" NavigateUri="http://www.microsoft.com/windowsphone/en-us/privacy.aspx" HorizontalAlignment="Left" Margin="0,-25,0,0" />
+        </Grid>        
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">            
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="share feedback" Click="InfoApplicationBarMenuItem_Click"/>
+                <shell:ApplicationBarMenuItem Text="rate this app" Click="RateApplicationBarMenuItem_Click"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>
